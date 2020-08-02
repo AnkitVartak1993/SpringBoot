@@ -6,7 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import java.util.Date;
 
 @Controller
 @SessionAttributes("name")
@@ -18,7 +21,19 @@ public class TodoController {
     public String showTodos(ModelMap model) {
         String username = (String) model.get("name");
         model.put("todos", todoService.retrieveTodos(username));
-        return "/list-todos";
+        return "list-todos";
+    }
+
+    @RequestMapping(value="/add-todo", method = RequestMethod.GET)
+    public String addTodo(ModelMap model) {
+        return "add-todo";
+    }
+
+    @RequestMapping(value="/add-todo", method= RequestMethod.POST)
+    public String showAddTodo(ModelMap model, @RequestParam String todoDescription) {
+        String username = (String) model.get("name");
+        todoService.addTodo(username, todoDescription, new Date(), false);
+        return "redirect:/list-todos";
     }
 
 }
