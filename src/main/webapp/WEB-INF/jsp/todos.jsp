@@ -4,6 +4,7 @@
 <head>
     <title>Todo</title>
     <jsp:include page="partials/header.jsp"/>
+    <jsp:include page="partials/navbar.jsp"/>
 </head>
 <body>
 <div class="container">
