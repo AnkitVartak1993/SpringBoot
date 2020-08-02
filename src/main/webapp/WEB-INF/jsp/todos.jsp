@@ -13,6 +13,8 @@
             <form:label path="desc">Description:</form:label>
             <form:input path="desc" class="form-control" required="required" type="text" id="todo_description"/>
             <form:errors path="desc" cssClass="text-warning"/>
+            <form:label path="targetDate">Target Date</form:label>
+            <form:input path="targetDate" type="text" class="form-control" required="required" />
         </fieldset>
 
         <button type="submit" class="btn btn-success">Add</button>
@@ -20,4 +22,9 @@
 </div>
 
 </body>
+<script>
+    $('#targetDate').datepicker({
+        format : 'dd/mm/yyyy'
+    });
+</script>
 </html>
