@@ -2,12 +2,18 @@
 <html>
 <head>
     <title>Todo</title>
+    <jsp:include page="partials/header.jsp"/>
 </head>
 <body>
-<form method="post">
-    Description: <input type="text" id="todo_description" name="todoDescription"/>
-    <input type="submit"/>
+<div class="container">
+    <form method="post">
+        <fieldset class="form-group">Description:
+            <input class="form-control" required="required" type="text" id="todo_description" name="todoDescription"/>
+        </fieldset>
 
-</form>
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+</div>
+
 </body>
 </html>

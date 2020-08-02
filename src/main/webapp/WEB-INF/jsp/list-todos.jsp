@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>${name}'s Todo List</title>
-    <link href="webjars/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <jsp:include page="partials/header.jsp"/>
 </head>
 <body>
 <div class="container">
@@ -28,8 +28,6 @@
     <div>
         <a class="btn btn-primary" href="/add-todo">Add new</a>
     </div>
-    <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
-    <script src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </div>
 
 </body>
