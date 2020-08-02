@@ -3,28 +3,34 @@
 <html>
 <head>
     <title>${name}'s Todo List</title>
+    <link href="webjars/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<table>
-    <caption>Your todo list</caption>
-    <thead>
-    <th>Description</th>
-    <th>Target Date</th>
-    <th>Completed</th>
-    </thead>
-    <tbody>
-    <c:forEach items="${todos}" var="todo">
-        <tr>
-            <td>${todo.desc}</td>
-            <td>${todo.targetDate}</td>
-            <td>${todo.done}</td>
-        </tr>
-    </c:forEach>
-    
-    </tbody>
-</table>
- List to be shown
-${todos}
-<a href="/add-todo">Add new</a>
+<div class="container">
+    <table class="table">
+        <thead>
+        <th>Description</th>
+        <th>Target Date</th>
+        <th>Completed</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+        <c:forEach items="${todos}" var="todo">
+            <tr>
+                <td>${todo.desc}</td>
+                <td>${todo.targetDate}</td>
+                <td>${todo.done}</td>
+                <td><a class="btn btn-danger" id="${todo.id}" name="${todo.id}" href="/delete-todo?id=${todo.id}">Delete</a> </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <div>
+        <a class="btn btn-primary" href="/add-todo">Add new</a>
+    </div>
+    <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</div>
+
 </body>
 </html>
