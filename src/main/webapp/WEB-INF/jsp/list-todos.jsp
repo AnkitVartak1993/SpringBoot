@@ -20,6 +20,7 @@
                 <td>${todo.desc}</td>
                 <td>${todo.targetDate}</td>
                 <td>${todo.done}</td>
+                <td><a class="btn btn-success"  href="/update-todo?id=${todo.id}">Edit</a> </td>
                 <td><a class="btn btn-danger" id="${todo.id}" name="${todo.id}" href="/delete-todo?id=${todo.id}">Delete</a> </td>
             </tr>
         </c:forEach>

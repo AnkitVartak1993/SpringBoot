@@ -1,10 +1,13 @@
 package com.springboot.start.web.model;
 
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class Todo {
     private int id;
     private String user;
+
+    @Size(min=5, max=20000, message = "Enter minimum 5 and maximum 20000 characters")
     private String desc;
     private Date targetDate;
     private boolean isDone;

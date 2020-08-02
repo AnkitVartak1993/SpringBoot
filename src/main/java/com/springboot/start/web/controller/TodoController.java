@@ -5,11 +5,13 @@ import com.springboot.start.web.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.validation.Valid;
 import java.util.Date;
 
 @Controller
@@ -28,13 +30,33 @@ public class TodoController {
     @RequestMapping(value="/add-todo", method = RequestMethod.GET)
     public String addTodo(ModelMap model) {
         model.addAttribute("todo",new Todo(0,(String) model.get("name"),"", new Date(), false));
-        return "add-todo";
+        return "todos";
     }
 
     @RequestMapping(value="/add-todo", method= RequestMethod.POST)
-    public String showAddTodo(ModelMap model, Todo todo) {
+    public String showAddTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+        if(result.hasErrors()){
+            return "todos";
+        }
         String username = (String) model.get("name");
         todoService.addTodo(username, todo.getDesc(), new Date(), false);
+        return "redirect:/list-todos";
+    }
+
+    @RequestMapping(value="/update-todo", method=RequestMethod.GET)
+    public String showUpdateTodo(ModelMap model, @RequestParam int id) {
+        Todo todo = todoService.retrieveTodo(id);
+        model.put("todo",todo);
+        return "todos";
+    }
+
+    @RequestMapping(value="/update-todo", method= RequestMethod.POST)
+    public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+        if(result.hasErrors()) {
+            return "todos";
+        }
+        todo.setUser((String) model.get("name"));
+        todoService.updateTodo(todo);
         return "redirect:/list-todos";
     }
 

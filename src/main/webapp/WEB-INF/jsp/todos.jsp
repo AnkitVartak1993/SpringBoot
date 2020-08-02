@@ -9,8 +9,10 @@
 <div class="container">
     <form:form method="post" modelAttribute="todo">
         <fieldset class="form-group">
+            <form:hidden path="id"/>
             <form:label path="desc">Description:</form:label>
             <form:input path="desc" class="form-control" required="required" type="text" id="todo_description"/>
+            <form:errors path="desc" cssClass="text-warning"/>
         </fieldset>
 
         <button type="submit" class="btn btn-success">Add</button>
